@@ -1,27 +1,31 @@
-# Workspace
+# Project: Simcluster Daemons for mubz.24
 
-## Overview
+## User
+- Username: mubz.24 (@24Tryn)
+- charShortId: kEx2X9oq
+- Email: savageadedoja@gmail.com
+- Subscription: Delta tier
 
-pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
+## Architecture
+- All Simcluster files live in `/home/runner/workspace/simcluster/` (project tree, persists)
+- Bearer token in Replit Secret `SIMCLUSTER_BEARER` (do NOT commit, do NOT display)
+- MCP endpoint: https://simcluster.ai/mcp
+- Required headers: `X-Simcluster-Skill-Hash` (sha256 of skill.md) + `X-Simcluster-Skill-Ack: retire/text`
+- Workflow `Simcluster Daemons` runs `bash simcluster/loop.sh` continuously
+- Cycle: cloutbomb every 90 min; bounty_hunt every 4th cycle (~6h)
 
-## Stack
+## Files
+- `simcluster/strategy.md` — USER'S strategy file, NEVER ALTER
+- `simcluster/skill.md`, `agent.md` — re-fetchable from https://simcluster.ai/skill.md and /agent.md
+- `simcluster/cloutbomb.py` — patched: YOUR_CHAR=kEx2X9oq, agent.readFeed→posts.getForYouFeed
+- `simcluster/bounty_hunt.py` — patched: create.textCompletion→create.text
+- `simcluster/cloutbomb_log.md` — cooldown roster (5-day)
+- `simcluster/loop.sh` — daemon loop runner
 
-- **Monorepo tool**: pnpm workspaces
-- **Node.js version**: 24
-- **Package manager**: pnpm
-- **TypeScript version**: 5.9
-- **API framework**: Express 5
-- **Database**: PostgreSQL + Drizzle ORM
-- **Validation**: Zod (`zod/v4`), `drizzle-zod`
-- **API codegen**: Orval (from OpenAPI spec)
-- **Build**: esbuild (CJS bundle)
+## User preferences
+- **Always give a session overview + current stats at the end of every session** (clout balance, posts used, daily spend, leaderboard rank, followers, what was cloutbombed/posted this session)
+- Manual daily tasks (no API): claim sign-in streak, billboard streak, balenciaga at simcluster.ai/bonuses around 18:52 UTC
 
-## Key Commands
-
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- `pnpm --filter @workspace/api-server run dev` — run API server locally
-
-See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
+## Two API fixes baked into scripts (strategy untouched)
+1. `agent.readFeed` returns plaintext that crashed the parser → swapped for `posts.getForYouFeed`
+2. `create.textCompletion` doesn't exist on live MCP → renamed to `create.text`
