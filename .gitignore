@@ -47,3 +47,7 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Simcluster runtime
+simcluster/*.log
+simcluster/bearer.txt
