@@ -24,12 +24,12 @@ args = "Simcluster Daemons"
 name = "Simcluster Daemons"
 author = "agent"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "bash /home/runner/.simcluster/loop.sh"
-
 [workflows.workflow.metadata]
 outputType = "console"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash /home/runner/workspace/simcluster/loop.sh"
 
 [agent]
 stack = "PNPM_WORKSPACE"
