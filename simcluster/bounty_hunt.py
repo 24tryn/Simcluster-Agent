@@ -13,7 +13,7 @@ import os
 BASE       = pathlib.Path(os.environ.get("SIMCLUSTER_DIR", str(pathlib.Path(__file__).resolve().parent)))
 TOKEN      = os.environ.get("SIMCLUSTER_BEARER") or (BASE / "bearer.txt").read_text().strip()
 SKILL_HASH = hashlib.sha256(open(str(BASE / "skill.md"), "rb").read()).hexdigest()
-SKILL_ACK  = "retire/text"
+SKILL_ACK  = "prevent.trap.length.horse"
 LOG        = BASE / "bounty_daemon.log"
 
 def log(msg):
@@ -48,8 +48,10 @@ def mcp(name, args={}):
 def get_post_slots_remaining():
     status = mcp("agent.sessionStatus")
     if not status: return 0
-    posted = status.get("dailyPosts", {}).get("postedLast24h", 0)
-    return max(0, 5 - posted)
+    dp = status.get("dailyPosts", {})
+    limit = dp.get("limit", 12)
+    posted = dp.get("postedLast24h", 0)
+    return max(0, limit - posted)
 
 def get_cheapest_filler():
     concepts = mcp("bounties.listBillboardConcepts")
@@ -95,7 +97,7 @@ def main():
     log("Bounty Hunt START")
 
     slots = get_post_slots_remaining()
-    log(f"  Post slots remaining: {slots}/5")
+    log(f"  Post slots remaining: {slots}/12")
     if slots == 0:
         log("  No slots -- skipping bounties")
         return

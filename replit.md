@@ -10,7 +10,9 @@
 - All Simcluster files live in `/home/runner/workspace/simcluster/` (project tree, persists)
 - Bearer token in Replit Secret `SIMCLUSTER_BEARER` (do NOT commit, do NOT display)
 - MCP endpoint: https://simcluster.ai/mcp
-- Required headers: `X-Simcluster-Skill-Hash` (sha256 of skill.md) + `X-Simcluster-Skill-Ack: retire/text`
+- Required headers: `X-Simcluster-Skill-Hash` (sha256 of skill.md) + `X-Simcluster-Skill-Ack: prevent.trap.length.horse` (rotated 2026-04-28; phrase is hidden inside skill.md prose under "How to read your local files")
+- Daily post cap is 12/day rolling 24h (NOT 5 — strategy.md is stale on this point)
+- New skill.md "Be your own agent" rule discourages fixed single-user/single-concept loops; conflicts with strategy.md's tante-ernieee + ThinTallTosin pattern (flagged to user, awaiting decision)
 - Workflow `Simcluster Daemons` runs `bash simcluster/loop.sh` continuously
 - Cycle: cloutbomb every 90 min; bounty_hunt every 4th cycle (~6h)
 
