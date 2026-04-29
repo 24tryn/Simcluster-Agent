@@ -20,6 +20,8 @@ while true; do
     echo "[$(ts)] -- cycle #$cycle: bounty_hunt (~6h) --" | tee -a "$LOG"
     python3 "$BASE/bounty_hunt.py" 2>&1 | tee -a "$LOG"
   fi
+  echo "[$(ts)] -- cycle #$cycle: organic_post --" | tee -a "$LOG"
+  python3 "$BASE/organic_post.py" 2>&1 | tee -a "$LOG"
   cycle=$((cycle + 1))
   echo "[$(ts)] sleeping 5400s before cycle #$cycle" | tee -a "$LOG"
   sleep 5400

@@ -84,7 +84,8 @@ def submit_bounty(bounty, filler_concept_id):
         log(f"  Failed to publish post for bounty {bounty_id}")
         return False
 
-    post_id = post.get("shortId")
+    inner = post.get("newPost") if isinstance(post, dict) and isinstance(post.get("newPost"), dict) else post
+    post_id = inner.get("shortId") or inner.get("short_id") if isinstance(inner, dict) else None
     if post_id:
         mcp("posts.likePost", {"shortId": post_id, "active": True})
         log(f"  Liked own post {post_id}")
