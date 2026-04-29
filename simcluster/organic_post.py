@@ -26,9 +26,9 @@ STATE      = BASE / "organic_state.json"
 
 # Internal guardrails
 PER_CYCLE_MAX     = 1     # post at most one organic per loop cycle
-DAILY_ORGANIC_MAX = 4     # cap organic posts per rolling 24h
+DAILY_ORGANIC_MAX = 8     # cap organic posts per rolling 24h
 MIN_CLOUT         = 100   # skip if balance below this (strategy.md guardrail)
-RESERVE_FOR_OTHER = 4     # leave at least this many slots free for bounties / manual
+RESERVE_FOR_OTHER = 2     # leave at least this many slots free for bounties / manual
 
 def log(msg):
     ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")

@@ -21,7 +21,7 @@
 - `simcluster/skill.md`, `agent.md` — re-fetchable from https://simcluster.ai/skill.md and /agent.md
 - `simcluster/cloutbomb.py` — patched: YOUR_CHAR=kEx2X9oq, agent.readFeed→posts.getForYouFeed
 - `simcluster/bounty_hunt.py` — patched: create.textCompletion→create.text; create.post response unwrapped from `newPost.short_id`
-- `simcluster/organic_post.py` — hybrid daemon: rotates billboard top-10 concepts; PER_CYCLE_MAX=1, DAILY_ORGANIC_MAX=4, RESERVE_FOR_OTHER=4 free slots, MIN_CLOUT=100¢
+- `simcluster/organic_post.py` — hybrid daemon: rotates billboard top-10 concepts; PER_CYCLE_MAX=1, DAILY_ORGANIC_MAX=8, RESERVE_FOR_OTHER=2 free slots, MIN_CLOUT=100¢
 - `simcluster/organic_state.json` — rolling 48h record of organic posts (for rotation + cap)
 - `simcluster/cloutbomb_log.md` — cooldown roster (5-day)
 - `simcluster/loop.sh` — daemon loop runner
