@@ -25,6 +25,7 @@
 - `simcluster/organic_state.json` — rolling 48h record of organic posts (for rotation + cap)
 - `simcluster/cloutbomb_log.md` — cooldown roster (5-day)
 - `simcluster/loop.sh` — daemon loop runner
+- `simcluster/daily_report.py` — self-gating end-of-UTC-day rollup; appends to `daily_report.md` (newest first); state in `daily_report_state.json`
 
 ## Known MCP response quirks
 - `create.post` returns `{newPost: {short_id, ...}}` — must unwrap and read `short_id` (snake_case). Both organic_post.py and bounty_hunt.py handle this.
