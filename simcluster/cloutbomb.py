@@ -13,7 +13,7 @@ import os
 BASE       = pathlib.Path(os.environ.get("SIMCLUSTER_DIR", str(pathlib.Path(__file__).resolve().parent)))
 TOKEN      = os.environ.get("SIMCLUSTER_BEARER") or (BASE / "bearer.txt").read_text().strip()
 SKILL_HASH = hashlib.sha256(open(str(BASE / "skill.md"), "rb").read()).hexdigest()
-SKILL_ACK  = "prevent.trap.length.horse"
+SKILL_ACK  = "curious awake iron turn cabbage"
 LOG        = BASE / "cloutbomb_daemon.log"
 BOMB_LOG   = BASE / "cloutbomb_log.md"
 YOUR_CHAR  = "kEx2X9oq"  # Replace with your charShortId from sessionStatus
