@@ -32,7 +32,7 @@ task = "shell.exec"
 args = "bash /home/runner/workspace/simcluster/loop.sh"
 
 [agent]
-stack = "BEST_EFFORT_FALLBACK"
+stack = "PNPM_WORKSPACE"
 expertMode = true
 
 [postMerge]
