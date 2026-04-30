@@ -14,6 +14,8 @@ fi
 echo "[$(ts)] ============ Loop runner started ============" | tee -a "$LOG"
 cycle=0
 while true; do
+  echo "[$(ts)] -- cycle #$cycle: skill_health (auto-heal on rotation) --" | tee -a "$LOG"
+  python3 "$BASE/skill_health.py" 2>&1 | tee -a "$LOG"
   echo "[$(ts)] -- cycle #$cycle: daily_report (self-gates by UTC date) --" | tee -a "$LOG"
   python3 "$BASE/daily_report.py" 2>&1 | tee -a "$LOG"
   echo "[$(ts)] -- cycle #$cycle: cloutbomb --" | tee -a "$LOG"
