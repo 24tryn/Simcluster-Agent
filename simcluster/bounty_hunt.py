@@ -65,7 +65,12 @@ def submit_bounty(bounty, filler_concept_id):
     req_concepts = bounty.get("requiredConceptShortIds", [])
     concept_ids  = list(set(req_concepts + [filler_concept_id]))
 
-    completion = mcp("create.text", {"conceptShortIds": concept_ids, "mediaShortIds": []})
+    items = []
+    for i, sid in enumerate(concept_ids):
+        if i > 0:
+            items.append({"type": "fragment", "fragment": None})
+        items.append({"type": "concept", "shortId": sid})
+    completion = mcp("create.text", {"items": items})
     if not completion:
         log(f"  Failed to create completion for bounty {bounty_id}")
         return False

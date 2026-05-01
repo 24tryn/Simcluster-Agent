@@ -163,7 +163,12 @@ def main():
             break
         log(f"  Concepts: {concept_ids}")
 
-        completion = mcp("create.text", {"conceptShortIds": concept_ids, "mediaShortIds": []})
+        items = []
+        for i, sid in enumerate(concept_ids):
+            if i > 0:
+                items.append({"type": "fragment", "fragment": None})
+            items.append({"type": "concept", "shortId": sid})
+        completion = mcp("create.text", {"items": items})
         if not completion:
             log("  create.text failed -- aborting")
             break
