@@ -46,6 +46,11 @@ def extract_ack(text: str) -> str | None:
         r"`([^`\n]{4,80})`[^.\n]{0,80}context marker",
         r"`([^`\n]{4,80})`[^.\n]{0,80}edition",
         r"remember\s+`([^`\n]{4,80})`",
+        r'retain\s+\u201c([^\u201d\n]{4,80})\u201d',   # curly left/right quotes
+        r'retain\s+"([^"\n]{4,80})"',                   # straight quotes
+        r"retain\s+'([^'\n]{4,80})'",
+        r"retain\s+`([^`\n]{4,80})`",
+        r"carry.forward words[^:]*:\s*[\"'\u201c]?([a-z][a-z.\- ]{3,60})[\"'\u201d]?",
     ]
     for pat in patterns:
         m = re.search(pat, text, flags=re.IGNORECASE)
